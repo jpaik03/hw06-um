@@ -21,12 +21,12 @@ CFLAGS = -g -std=c99 -Wall -Wextra -Werror -Wfatal-errors -pedantic $(IFLAGS)
 # Linking flags
 # Set debugging information and update linking path to include course binaries
 # and CII implementations
-LDFLAGS = -lbitpack -g -L/comp/40/build/lib -L/usr/sup/cii40/lib64
+LDFLAGS = -g -L/comp/40/build/lib -L/usr/sup/cii40/lib64
 
 # Libraries needed for linking
 # All programs cii40 (Hanson binaries)
 # Exports a Um_disassemble, useful for debugging the UM
-LDLIBS = -lum-dis -lcii
+LDLIBS = -lbitpack -lum-dis -lcii
 
 # Collect all .h files in your directory.
 # This way, you can never forget to add
@@ -55,4 +55,4 @@ um: um.o
 clean:
 	rm -f um *.o
 
-# TODO: linking step
+# TODO: add modules
