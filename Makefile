@@ -1,6 +1,6 @@
 # Makefile
 # Justin Paik (jpaik03)
-# November 17, 2025
+# 17 November, 2025
 # um
 # 
 # Includes build rules for um.
@@ -40,7 +40,7 @@ INCLUDES = $(shell echo *.h)
 
 ############### Rules ###############
 
-all: um
+all: um registers memory unit_tests
 
 ## Compile step (.c files -> .o files)
 
@@ -49,10 +49,17 @@ all: um
 
 ## Linking step (.o -> executable program)
 
-um: um.o
+um: um.o registers.o memory.o 
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+
+registers: registers.o
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+
+memory: memory.o
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+	
+unit_tests: unit_tests.o registers.o memory.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 clean:
 	rm -f um *.o
-
-# TODO: add modules
